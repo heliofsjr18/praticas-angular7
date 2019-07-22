@@ -16,7 +16,7 @@ import { PauloComponent } from './paulo/paulo.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatGridListModule
+    MatGridListModule,
     NgbModule
   ],
   providers: [],
