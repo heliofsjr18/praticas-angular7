@@ -8,12 +8,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PauloComponent } from './paulo/paulo.component';
 import { IsabellaComponent } from './isabella/isabella.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormularioComponent } from './clientes/formulario/formulario.component';
 @NgModule({
   declarations: [
     AppComponent,
     IsabellaComponent,
     PauloComponent,
-    HelioComponent
+    HelioComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule,
