@@ -13,7 +13,7 @@ export class FormularioComponent
   ({
     nome: new FormControl('',Validators.required),
     idade: new FormControl('',Validators.required),
-    cpf: new FormControl('',[Validators.required,Validators.minLength(7)]),
+    cpf: new FormControl('',[Validators.required,Validators.minLength(11)]),
     telefone: new FormControl('',Validators.required),
     email: new FormControl('',Validators.required),
     
@@ -26,10 +26,10 @@ export class FormularioComponent
 
    onSubmit() 
   {
-    // TODO: Use EventEmitter with form value
+    
     console.warn(this.formDados.value);
   }
-
+//Preenchimento automatico para verificar a validação
   updateProfile() {
     this.formDados.patchValue
     ({

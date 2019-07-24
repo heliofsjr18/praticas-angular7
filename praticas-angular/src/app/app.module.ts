@@ -9,20 +9,35 @@ import { PauloComponent } from './paulo/paulo.component';
 import { IsabellaComponent } from './isabella/isabella.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormularioComponent } from './clientes/formulario/formulario.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatFormFieldModule, matFormFieldAnimations} from '@angular/material/form-field';
+import {MatButtonModule, MatSelectModule} from '@angular/material';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon'; 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
     IsabellaComponent,
     PauloComponent,
     HelioComponent,
-    FormularioComponent
+    FormularioComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     MatGridListModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatInputModule,
+    MatIconModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
