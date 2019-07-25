@@ -10,6 +10,7 @@ import {Component} from '@angular/core';
 
 export class IsabellaComponent
  {
+   // Instanciando
    formDados = new FormGroup
   ({
     nome: new FormControl('',[Validators.required,Validators.minLength(4),Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]),
@@ -21,10 +22,6 @@ export class IsabellaComponent
     cidade: new FormControl('',[Validators.required,Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]),
     estado: new FormControl('',[Validators.required,Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]),
   });
-
-   onSubmit() {
-    ;
-  }
 
 //Preenchimento automatico para verificar a validação
   updateProfile() {
@@ -44,6 +41,8 @@ export class IsabellaComponent
     });
   }
 
+/*************  Validação de preenchimento dos campos *************************/
+  //NOME
   getErrorMessageNome() {
     var mensagem:string = '';
 
@@ -59,13 +58,13 @@ export class IsabellaComponent
     }
     return mensagem;
   }
-
+  //EMAIL
   getErrorMessageEmail() {
     return this.formDados.controls.email.hasError('required') ? 'O campo é obrigatório' :
         this.formDados.controls.email.hasError('email') ? 'O email não é válido' :
             '';
   }
-
+  //TELEFONE
   getErrorMessageTelefone() {
     var mensagem:string = '';
 
@@ -85,7 +84,7 @@ export class IsabellaComponent
 
     return mensagem;
   }
- 
+  //CPF
   getErrorMessageCpf() {
     var mensagem:string = '';
 
@@ -102,21 +101,56 @@ export class IsabellaComponent
 
     return mensagem;
   }
-
+  //RUA
   getErrorMessageRua() {
     return this.formDados.controls.rua.hasError('required') ? 'O campo é obrigatório' :
         this.formDados.controls.rua.hasError('minlength') ? 'Não é um endereço válido' :
             '';
   }
-  
+  //CIDADE
   getErrorMessageCidade() {
     return this.formDados.controls.cidade.hasError('required') ? 'O campo é obrigatório' :
         this.formDados.controls.cidade.hasError('pattern') ? 'Apenas letras' :
             '';
   }
+  //UF
   getErrorMessageEstado() {
     return this.formDados.controls.estado.hasError('required') ? 'O campo é obrigatório' :
         this.formDados.controls.estado.hasError('pattern') ? 'Apenas letras' :
             '';
   }
+/******************  Fim validação *************************/
+  
+  //Método que salva dados do formulário
+  saveData(){
+    ;
+  }
+
+
+  //Método que envia dados do formulário para GRID
+  onSubmit() {
+    console.log(this.formDados.value);
+  }
+
+  cleanData(){
+    this.formDados.patchValue
+    ({
+      nome: '',
+      idade: '',
+      email: ' ',
+      cpf: '',
+      telefone: '',
+      rua: '',
+      cidade: '',
+      estado: '',
+    });
+  }
+
+  // Criar Grid
+  tiles = [
+    {text: 'One', cols: 1, rows: 3, color: '#142A5C'},
+    {text: 'Two', cols: 1, rows: 3, color: '#B7A0E8'},
+    {text: 'Three', cols: 1, rows: 3, color: '#FF0000'},
+    {text: 'Four', cols: 1, rows: 3, color: '#D9EDD9'},
+  ];
 }
