@@ -14,7 +14,11 @@
     opacity: 0;
     transition: opacity 200ms;
   }
+  .form-margin{
+    margin-left: 1px;
+  }
   
   :host.example-floating .example-tel-input-spacer {
     opacity: 1;
   }
+
