@@ -1,27 +1,35 @@
 import { Validators } from '@angular/forms'
 import {FormControl, FormGroup} from '@angular/forms';
 import {Component} from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-isabella',
   templateUrl: './isabella.component.html',
-  styleUrls: ['./isabella.component.css']
+  styleUrls: ['./isabella.component.css'],
 })
 
 export class IsabellaComponent
  {
-   // Instanciando
-   formDados = new FormGroup
-  ({
-    nome: new FormControl('',[Validators.required,Validators.minLength(4),Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]),
-    idade: new FormControl('',Validators.required),
-    cpf: new FormControl('',[Validators.required,Validators.minLength(11),Validators.pattern(/[0-9]/)]),
-    telefone: new FormControl('',[Validators.required,Validators.minLength(11), Validators.pattern(/[0-9]/)]),
-    email: new FormControl('',[Validators.required,Validators.email]),
-    rua: new FormControl('',[Validators.required,Validators.minLength(4)]),
-    cidade: new FormControl('',[Validators.required,Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]),
-    estado: new FormControl('',[Validators.required,Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]),
+  public formDados: FormGroup
+  public arrayDados: FormArray
+
+  // Instanciando
+   createPerson(): FormGroup {
+    return this.fb.group({
+    nome:['',[Validators.required,Validators.minLength(4),Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
+    idade:['',Validators.required],
+    cpf:['',[Validators.required,Validators.minLength(11),Validators.pattern(/[0-9]/)]],
+    telefone:['',[Validators.required,Validators.minLength(11), Validators.pattern(/[0-9]/)]],
+    email:['',[Validators.required,Validators.email]],
+    rua:['',[Validators.required,Validators.minLength(4)]],
+    cidade:['',[Validators.required,Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
+    estado:['',[Validators.required,Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
   });
+}
+
+  constructor(private fb: FormBuilder) { }
 
 //Preenchimento automatico para verificar a validação
   updateProfile() {
@@ -120,16 +128,23 @@ export class IsabellaComponent
             '';
   }
 /******************  Fim validação *************************/
-  
+
+ngOnInit() {
+  this.formDados = this.fb.group({
+      arrayDados: this.fb.array([this.createPerson()]),
+  })
+}
+
   //Método que salva dados do formulário
   saveData(){
-    ;
+    console.log(this.formDados.getRawValue())
   }
-
 
   //Método que envia dados do formulário para GRID
   onSubmit() {
-    console.log(this.formDados.value);
+  console.log(this.formDados.value);
+  //  this.arrayDados = this.formDados.get('arrayDados') as FormArray
+  //  this.arrayDados.push(this.createPerson())
   }
 
   cleanData(){

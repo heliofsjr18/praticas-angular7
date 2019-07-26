@@ -1,72 +1,11 @@
-<h3>Dados Pessoais</h3>
-<form [formGroup]="formDados">
-  
-    <label>
-    <p>
-      Nome Completo:
-      <input type="text" formControlName="nome" required>
-    </p>
-    </label>
-  
-    <label>
-     <p>
-      Idade:
-      <input type="text" formControlName="idade" required>
-    </p>
-    </label>
-
-    <label>
-    <p>
-        CPF:
-        <input type="text" formControlName="cpf" required>
-    </p>
-      </label>
-
-      <label>
-    <p>
-        Telefone:
-        <input type="text" formControlName="telefone" required>
-    </p>
-      </label>
-
-      <label>
-    <p>
-        E-mail:
-        <input type="text" formControlName="email" required>
-    </p>
-      </label>
-  
-  <div formGroupName="Endereco">
-    <h3>Endereço</h3>
-
-    <label>
-      Rua:
-      <input type="text" formControlName="rua" required>
-    </label>
-  
-    <label>
-      Cidade:
-      <input type="text" formControlName="cidade" required>
-    </label>
-    
-    <label>
-      Estado:
-      <input type="text" formControlName="estado" required>
-    </label>
-    
-
-  <form [formGroup]="formDados" (ngSubmit)="onSubmit()">
-
-  </form>
-  <p>
-  <button type="submit" [disabled]="!formDados.valid">Submit</button>
-  <!-- BOTAO QUE PREENCHE AUTOMATICAMENTE OS CAMPOS-->
-  <button (click)="updateProfile()">Update Profile</button>
-  </p>
-  
-  <p>
-        Form Status: {{ formDados.status }}
-    </p>
-
-
-  
+<form [formGroup]="myForm" (submit)="save()">
+  <div formArrayName="people" *ngFor="let person of myForm.get('people').controls; let i = index;">
+      <div [formGroupName]="i">
+          <input formControlName="name" placeholder="Name..." type="text">
+          <input formControlName="age" placeholder="Age..." type="number">
+          <input formControlName="address" placeholder="Address..." type="text">
+      </div>
+  </div>
+  <button (click)="addNewPerson()" type="button">Add Person</button>
+  <button type="submit">Save</button>
+</form>

@@ -3,11 +3,12 @@
     <h3>Dados Pessoais</h3>
 
     <form [formGroup]="formDados" >
-
+      <div formArrayName="arrayDados" *ngFor="let person of formDados.get('arrayDados').controls; let i = index;"></div>
+        <div [formGroupName]="i">
       <!--NOME-->
       <div>
         <mat-form-field>
-          <input matInput placeholder="Nome Completo" formControlName="nome" required>
+          <input matInput placeholder="Nome Completo" formControlName="i" required>
           <mat-error>{{getErrorMessageNome()}}</mat-error>
           <mat-hint>Digite seu nome completo</mat-hint>
         </mat-form-field>
@@ -16,7 +17,7 @@
       <!--IDADE-->
       <div>
         <mat-form-field>
-          <input matInput placeholder="Idade" formControlName="idade" type="number" required>
+          <input matInput placeholder="Idade" formControlName="i" type="number" required>
           <mat-hint>O campo é obrigatório</mat-hint>
           <!----mat-hint>Apenas números</mat-hint-->
         </mat-form-field>
@@ -25,7 +26,7 @@
       <!--CPF-->
       <div>
         <mat-form-field>
-          <input matInput placeholder="Digite seu CPF" formControlName="cpf" type="text" maxlength="11" required>
+          <input matInput placeholder="Digite seu CPF" formControlName="i" type="text" maxlength="11" required>
           <mat-error>{{getErrorMessageCpf()}}</mat-error>
           <mat-hint>Sem espaços e traços</mat-hint>
         </mat-form-field>
@@ -73,7 +74,8 @@
           <mat-error>{{getErrorMessageEstado()}}</mat-error>
         </mat-form-field>
       </div>
-
+    </div>
+  
       <!------------------BOTOES---------------------------->
       <div class="example-button-row">
         <button mat-raised-button (click)="saveData()">SALVAR</button>
@@ -85,11 +87,11 @@
   <button (click)="updateProfile()">Update Profile</button>-->
 
       <!--p>Form Status: {{ formDados.status }}</p>-->
-      <div style="float: left;">
+      <p>
       <mat-grid-list cols="14" rowHeight="80px">
         <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
           [style.background]="tile.color">
           {{tile.text}}
         </mat-grid-tile>
       </mat-grid-list>
-      </div>
+    </p>
