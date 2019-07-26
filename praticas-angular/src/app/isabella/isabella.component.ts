@@ -148,9 +148,13 @@ export class IsabellaComponent
 
   // Criar Grid
   tiles = [
-    {text: 'One', cols: 1, rows: 3, color: '#142A5C'},
-    {text: 'Two', cols: 1, rows: 3, color: '#B7A0E8'},
-    {text: 'Three', cols: 1, rows: 3, color: '#FF0000'},
-    {text: 'Four', cols: 1, rows: 3, color: '#D9EDD9'},
+    {text: 'NOME', cols: 1, rows: 1, color: '#808080'},
+    {text: 'IDADE', cols: 1, rows: 1, color: '#808080'},
+    {text: 'CPF', cols: 1, rows: 1, color: '#808080'},
+    {text: 'TELEFONE', cols: 1, rows: 1, color: '#808080'},
+    {text: 'E-MAIL', cols: 1, rows: 1, color: '#808080'},
+    {text: 'RUA', cols: 1, rows: 1, color: '#808080'},
+    {text: 'CIDADE', cols: 1, rows: 1, color: '#808080'},
+    {text: 'UF', cols: 1, rows: 1, color: '#808080'},
   ];
 }

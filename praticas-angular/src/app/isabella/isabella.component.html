@@ -2,7 +2,7 @@
   <div style="margin-left:10px;">
     <h3>Dados Pessoais</h3>
 
-    <form [formGroup]="formDados" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formDados" >
 
       <!--NOME-->
       <div>
@@ -73,11 +73,11 @@
           <mat-error>{{getErrorMessageEstado()}}</mat-error>
         </mat-form-field>
       </div>
-      
+
       <!------------------BOTOES---------------------------->
       <div class="example-button-row">
         <button mat-raised-button (click)="saveData()">SALVAR</button>
-        <button mat-raised-button [disabled]="!formDados.valid">Submeter</button>
+        <button mat-raised-button [disabled]="!formDados.valid" (click)="onSubmit()" type="submit">Submeter</button>
         <button mat-raised-button (click)="cleanData()">Limpar</button>
       </div>
 
@@ -85,10 +85,11 @@
   <button (click)="updateProfile()">Update Profile</button>-->
 
       <!--p>Form Status: {{ formDados.status }}</p>-->
-
-      <mat-grid-list cols="4" rowHeight="100px">
+      <div style="float: left;">
+      <mat-grid-list cols="14" rowHeight="80px">
         <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
           [style.background]="tile.color">
           {{tile.text}}
         </mat-grid-tile>
       </mat-grid-list>
+      </div>
