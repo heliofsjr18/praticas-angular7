@@ -14,8 +14,14 @@ export class IsabellaComponent
  {
   public formDados: FormGroup
   public arrayDados: FormArray
-
-  // Instanciando
+  constructor(private fb: FormBuilder) { }
+  
+  ngOnInit() {
+    this.formDados = this.fb.group({
+        arrayDados: this.fb.array([this.createPerson()]),
+    })
+  }
+  
    createPerson(): FormGroup {
     return this.fb.group({
     nome:['',[Validators.required,Validators.minLength(4),Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
@@ -29,7 +35,6 @@ export class IsabellaComponent
   });
 }
 
-  constructor(private fb: FormBuilder) { }
 
 //Preenchimento automatico para verificar a validação
   updateProfile() {
@@ -129,24 +134,19 @@ export class IsabellaComponent
   }
 /******************  Fim validação *************************/
 
-ngOnInit() {
-  this.formDados = this.fb.group({
-      arrayDados: this.fb.array([this.createPerson()]),
-  })
-}
-
   //Método que salva dados do formulário
   saveData(){
     console.log(this.formDados.getRawValue())
   }
 
   //Método que envia dados do formulário para GRID
-  onSubmit() {
-  console.log(this.formDados.value);
+  //onSubmit() {
+  //console.log(this.formDados.value);
   //  this.arrayDados = this.formDados.get('arrayDados') as FormArray
   //  this.arrayDados.push(this.createPerson())
-  }
+  //}
 
+  //Limpa campos do formulário
   cleanData(){
     this.formDados.patchValue
     ({

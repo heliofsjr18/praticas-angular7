@@ -2,13 +2,13 @@
   <div style="margin-left:10px;">
     <h3>Dados Pessoais</h3>
 
-    <form [formGroup]="formDados" >
+    <form [formGroup]="formDados" (submit)="saveData()" >
       <div formArrayName="arrayDados" *ngFor="let person of formDados.get('arrayDados').controls; let i = index;"></div>
         <div [formGroupName]="i">
       <!--NOME-->
       <div>
         <mat-form-field>
-          <input matInput placeholder="Nome Completo" formControlName="i" required>
+          <input matInput placeholder="Nome Completo" formControlName="nome" required>
           <mat-error>{{getErrorMessageNome()}}</mat-error>
           <mat-hint>Digite seu nome completo</mat-hint>
         </mat-form-field>
@@ -26,7 +26,7 @@
       <!--CPF-->
       <div>
         <mat-form-field>
-          <input matInput placeholder="Digite seu CPF" formControlName="i" type="text" maxlength="11" required>
+          <input matInput placeholder="Digite seu CPF" formControlName="cpf" type="text" maxlength="11" required>
           <mat-error>{{getErrorMessageCpf()}}</mat-error>
           <mat-hint>Sem espaços e traços</mat-hint>
         </mat-form-field>
@@ -78,8 +78,8 @@
   
       <!------------------BOTOES---------------------------->
       <div class="example-button-row">
-        <button mat-raised-button (click)="saveData()">SALVAR</button>
-        <button mat-raised-button [disabled]="!formDados.valid" (click)="onSubmit()" type="submit">Submeter</button>
+        <button mat-raised-button type="submit" [disabled]="!formDados.valid">SALVAR</button>
+        <!--button mat-raised-button [disabled]="!formDados.valid" (click)="onSubmit()" type="submit">Submeter</button-->
         <button mat-raised-button (click)="cleanData()">Limpar</button>
       </div>
 
