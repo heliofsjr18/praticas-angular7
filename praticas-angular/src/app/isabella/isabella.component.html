@@ -2,96 +2,94 @@
   <div style="margin-left:10px;">
     <h3>Dados Pessoais</h3>
 
-    <form [formGroup]="formDados" (submit)="saveData()" >
-      <div formArrayName="arrayDados" *ngFor="let person of formDados.get('arrayDados').controls; let i = index;"></div>
-        <div [formGroupName]="i">
-      <!--NOME-->
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Nome Completo" formControlName="nome" required>
-          <mat-error>{{getErrorMessageNome()}}</mat-error>
-          <mat-hint>Digite seu nome completo</mat-hint>
-        </mat-form-field>
-      </div>
+    <form [formGroup]="formDados">
+         <!--NOME-->
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Nome Completo" formControlName="nome" required>
+              <mat-error>{{getErrorMessageNome()}}</mat-error>
+              <mat-hint>Digite seu nome completo</mat-hint>
+            </mat-form-field>
+          </div>
 
-      <!--IDADE-->
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Idade" formControlName="i" type="number" required>
-          <mat-hint>O campo é obrigatório</mat-hint>
-          <!----mat-hint>Apenas números</mat-hint-->
-        </mat-form-field>
-      </div>
+          <!--IDADE-->
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Idade" formControlName="idade" type="number" required>
+              <mat-hint>O campo é obrigatório</mat-hint>
+              <!----mat-hint>Apenas números</mat-hint-->
+            </mat-form-field>
+          </div>
 
-      <!--CPF-->
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Digite seu CPF" formControlName="cpf" type="text" maxlength="11" required>
-          <mat-error>{{getErrorMessageCpf()}}</mat-error>
-          <mat-hint>Sem espaços e traços</mat-hint>
-        </mat-form-field>
-      </div>
+          <!--CPF-->
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Digite seu CPF" formControlName="cpf" type="text" maxlength="11" required>
+              <mat-error>{{getErrorMessageCpf()}}</mat-error>
+              <mat-hint>Sem espaços e traços</mat-hint>
+            </mat-form-field>
+          </div>
 
-      <!--TELEFONE-->
-      <div class="example-tel-input-container">
-        <mat-form-field>
-          <input matInput class="example-tel-input-element" placeholder="Numero do telefone" formControlName="telefone"
-            type="text" maxlength="12" required>
-          <mat-icon matSuffix>phone</mat-icon>
-          <mat-error>{{getErrorMessageTelefone()}}</mat-error>
-          <mat-hint>Inclua a o codigo de area</mat-hint>
-        </mat-form-field>
-      </div>
+          <!--TELEFONE-->
+          <div class="example-tel-input-container">
+            <mat-form-field>
+              <input matInput class="example-tel-input-element" placeholder="Numero do telefone"
+                formControlName="telefone" type="text" maxlength="12" required>
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-error>{{getErrorMessageTelefone()}}</mat-error>
+              <mat-hint>Inclua a o codigo de area</mat-hint>
+            </mat-form-field>
+          </div>
 
-      <!--EMAIL-->
-      <div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="Digite seu email" formControlName="email" required>
-          <mat-error>{{getErrorMessageEmail()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <!--RUA-->
-      <div class="example-container">
-        <mat-form-field>
-          <input matInput class="example-tel-input-element" placeholder="Rua" type="text" formControlName="rua"
-            required>
-          <mat-error>{{getErrorMessageRua()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <!--CIDADE-->
-      <div class="example-container">
-        <mat-form-field>
-          <input matInput class="example-tel-input-element" placeholder="Cidade" type="text" formControlName="cidade"
-            required>
-          <mat-error>{{getErrorMessageCidade()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <!--ESTADO-->
-      <div class="example-container">
-        <mat-form-field>
-          <input matInput class="example-tel-input-element" placeholder="UF" type="text" formControlName="estado"
-            type="text" maxlength="3" required>
-          <mat-error>{{getErrorMessageEstado()}}</mat-error>
-        </mat-form-field>
-      </div>
-    </div>
-  
+          <!--EMAIL-->
+          <div class="example-container">
+            <mat-form-field>
+              <input matInput placeholder="Digite seu email" formControlName="email" required>
+              <mat-error>{{getErrorMessageEmail()}}</mat-error>
+            </mat-form-field>
+          </div>
+          <!--RUA-->
+          <div class="example-container">
+            <mat-form-field>
+              <input matInput class="example-tel-input-element" placeholder="Rua" type="text" formControlName="rua"
+                required>
+              <mat-error>{{getErrorMessageRua()}}</mat-error>
+            </mat-form-field>
+          </div>
+          <!--CIDADE-->
+          <div class="example-container">
+            <mat-form-field>
+              <input matInput class="example-tel-input-element" placeholder="Cidade" type="text"
+                formControlName="cidade" required>
+              <mat-error>{{getErrorMessageCidade()}}</mat-error>
+            </mat-form-field>
+          </div>
+          <!--ESTADO-->
+          <div class="example-container">
+            <mat-form-field>
+              <input matInput class="example-tel-input-element" placeholder="UF" type="text" formControlName="estado"
+                type="text" maxlength="3" required>
+              <mat-error>{{getErrorMessageEstado()}}</mat-error>
+            </mat-form-field>
+          </div>
+        
+
       <!------------------BOTOES---------------------------->
       <div class="example-button-row">
-        <button mat-raised-button type="submit" [disabled]="!formDados.valid">SALVAR</button>
+        <button mat-raised-button type="submit" [disabled]="!formDados.valid" (click)="saveData()">SALVAR</button>
         <!--button mat-raised-button [disabled]="!formDados.valid" (click)="onSubmit()" type="submit">Submeter</button-->
         <button mat-raised-button (click)="cleanData()">Limpar</button>
       </div>
 
-      <!-- BOTAO QUE PREENCHE AUTOMATICAMENTE OS CAMPOS
-  <button (click)="updateProfile()">Update Profile</button>-->
+      <!-- BOTAO QUE PREENCHE AUTOMATICAMENTE OS CAMPOS -->
+  <button (click)="updateProfile()">Update Profile</button>
 
       <!--p>Form Status: {{ formDados.status }}</p>-->
       <p>
-      <mat-grid-list cols="14" rowHeight="80px">
-        <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
-          [style.background]="tile.color">
-          {{tile.text}}
-        </mat-grid-tile>
-      </mat-grid-list>
-    </p>
+        <mat-grid-list cols="14" rowHeight="80px">
+          <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows"
+            [style.background]="tile.color">
+            {{tile.text}}
+          </mat-grid-tile>
+        </mat-grid-list>
+      </p>

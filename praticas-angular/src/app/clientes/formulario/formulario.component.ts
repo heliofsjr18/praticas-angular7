@@ -30,7 +30,8 @@ createPerson(): FormGroup {
     })
 }
 public save(): void {
-  console.log(this.myForm.getRawValue())
+     this.people = this.myForm.get('people') as FormArray
+    console.log(this.myForm.getRawValue())
 }
 public addNewPerson(): void {
   this.people = this.myForm.get('people') as FormArray
