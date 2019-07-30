@@ -12,7 +12,8 @@ import { FormArray } from '@angular/forms';
 
 export class IsabellaComponent {
   public formDados: FormGroup
-  arr: any;
+  arr = [];
+  tiles: { text: string; cols: number; rows: number; color: string; }[];
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -42,13 +43,9 @@ export class IsabellaComponent {
         email: 'nome@email.com',
         cpf: '12345678901',
         telefone: '123456789111',
-        Endereco:
-        {
-          rua: 'Rua tal numero tal',
-          cidade: 'cidade',
-          estado: 'estado',
-        }
-      });
+        rua: 'Rua tal numero tal',
+        cidade: 'cidade',
+        estado: 'esr',});
   }
 
   /*************  Validação de preenchimento dos campos *************************/
@@ -128,20 +125,32 @@ export class IsabellaComponent {
         '';
   }
   /******************  Fim validação *************************/
-
+  
   //Inicia contador
   i=0;
   //Método que salva dados do formulário
   saveData() {
-    //Itera o indice cada vez que o botao SALVA é acionado
-    this.i++;
     //inicializando array
-    let arr = ['teste1','teste1','teste1'];
+    //let arr = [''];
     //recebe o formgroup    
-    arr[this.i] = this.formDados.getRawValue();
+    this.arr[this.i] = this.formDados.getRawValue();
      console.log(this.i);
-     console.log(arr);
-     console.log(arr[this.i]);
+     console.log(this.arr);
+     //console.log(arr[this.i]);
+     
+     //Itera o indice cada vez que o botao SALVA é acionado
+    this.i++;
+
+     this.tiles = [
+      { text: 'NOME', cols: 1, rows: 1, color: '#808080' },
+      { text: 'IDADE', cols: 1, rows: 1, color: '#808080' },
+      { text: 'CPF', cols: 1, rows: 1, color: '#808080' },
+      { text: 'TELEFONE', cols: 1, rows: 1, color: '#808080' },
+      { text: 'E-MAIL', cols: 1, rows: 1, color: '#808080' },
+      { text: 'RUA', cols: 1, rows: 1, color: '#808080' },
+      { text: 'CIDADE', cols: 1, rows: 1, color: '#808080' },
+      { text: 'UF', cols: 1, rows: 1, color: '#808080' },
+    ];
   }
 
   //Limpa campos do formulário
@@ -161,14 +170,5 @@ export class IsabellaComponent {
   }
 
   // Criar Grid
-  tiles = [
-    { text: 'NOME', cols: 1, rows: 1, color: '#808080' },
-    { text: 'IDADE', cols: 1, rows: 1, color: '#808080' },
-    { text: 'CPF', cols: 1, rows: 1, color: '#808080' },
-    { text: 'TELEFONE', cols: 1, rows: 1, color: '#808080' },
-    { text: 'E-MAIL', cols: 1, rows: 1, color: '#808080' },
-    { text: 'RUA', cols: 1, rows: 1, color: '#808080' },
-    { text: 'CIDADE', cols: 1, rows: 1, color: '#808080' },
-    { text: 'UF', cols: 1, rows: 1, color: '#808080' },
-  ];
+
 }
