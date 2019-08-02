@@ -1,8 +1,8 @@
-import { Validators } from '@angular/forms'
+import { Validators } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { FormArray } from '@angular/forms';
+
 
 @Component({
   selector: 'app-isabella',
@@ -11,11 +11,16 @@ import { FormArray } from '@angular/forms';
 })
 
 export class IsabellaComponent {
-  public formDados: FormGroup
+  constructor(private fb: FormBuilder) { }
+  public formDados: FormGroup;
   arr = [];
   tiles: { text: string; cols: number; rows: number; color: string; }[];
-  constructor(private fb: FormBuilder) { }
+  /******************  Fim validação *************************/
 
+  // Inicia contador
+  i = 0;
+
+  // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit() {
     this.formDados = this.createPerson();
   }
@@ -34,7 +39,7 @@ export class IsabellaComponent {
   }
 
 
-  //Preenchimento automatico para verificar a validação
+  // Preenchimento automatico para verificar a validação
   updateProfile() {
     this.formDados.patchValue
       ({
@@ -45,115 +50,101 @@ export class IsabellaComponent {
         telefone: '123456789111',
         rua: 'Rua tal numero tal',
         cidade: 'cidade',
-        estado: 'esr',});
+        estado: 'esr', });
   }
 
   /*************  Validação de preenchimento dos campos *************************/
-  //NOME
+  // NOME
   getErrorMessageNome() {
-    var mensagem: string = '';
+    let mensagem = '';
 
     if (this.formDados.controls.nome.hasError('required')) {
       mensagem = 'O campo é obrigatório';
-    }
-    else if (this.formDados.controls.nome.hasError('pattern')) {
+    } else if (this.formDados.controls.nome.hasError('pattern')) {
       mensagem = 'Apenas Letras';
-    }
-    else if (this.formDados.controls.nome.hasError('minlength')) {
+    } else if (this.formDados.controls.nome.hasError('minlength')) {
       mensagem = 'Minimo 4 digitos';
     }
     return mensagem;
   }
-  //EMAIL
+  // EMAIL
   getErrorMessageEmail() {
     return this.formDados.controls.email.hasError('required') ? 'O campo é obrigatório' :
       this.formDados.controls.email.hasError('email') ? 'O email não é válido' :
         '';
   }
-  //TELEFONE
+  // TELEFONE
   getErrorMessageTelefone() {
-    var mensagem: string = '';
+    let mensagem = '';
 
     if (this.formDados.controls.telefone.hasError('required')) {
       mensagem = 'O campo é obrigatório';
-    }
-    else if (this.formDados.controls.telefone.hasError('pattern')) {
+    } else if (this.formDados.controls.telefone.hasError('pattern')) {
       mensagem = 'Apenas numeros';
-    }
-    else if (this.formDados.controls.telefone.hasError('minlength')) {
+    } else if (this.formDados.controls.telefone.hasError('minlength')) {
       mensagem = 'Minimo 11 digitos';
-    }
-    else if (this.formDados.controls.telefone.hasError('maxlength')) {
+    } else if (this.formDados.controls.telefone.hasError('maxlength')) {
       mensagem = 'Max 12 digitos';
     }
 
     return mensagem;
   }
-  //CPF
+  // CPF
   getErrorMessageCpf() {
-    var mensagem: string = '';
+    let mensagem = '';
 
     if (this.formDados.controls.cpf.hasError('pattern')) {
       mensagem = 'Apenas numeros';
-    }
-    else if (this.formDados.controls.cpf.hasError('required')) {
+    } else if (this.formDados.controls.cpf.hasError('required')) {
       mensagem = 'O campo é obrigatório';
-    }
-
-    else if (this.formDados.controls.cpf.hasError('minlength')) {
+    } else if (this.formDados.controls.cpf.hasError('minlength')) {
       mensagem = 'O CPF não é válido';
     }
 
     return mensagem;
   }
-  //RUA
+  // RUA
   getErrorMessageRua() {
     return this.formDados.controls.rua.hasError('required') ? 'O campo é obrigatório' :
       this.formDados.controls.rua.hasError('minlength') ? 'Não é um endereço válido' :
         '';
   }
-  //CIDADE
+  // CIDADE
   getErrorMessageCidade() {
     return this.formDados.controls.cidade.hasError('required') ? 'O campo é obrigatório' :
       this.formDados.controls.cidade.hasError('pattern') ? 'Apenas letras' :
         '';
   }
-  //UF
+  // UF
   getErrorMessageEstado() {
     return this.formDados.controls.estado.hasError('required') ? 'O campo é obrigatório' :
       this.formDados.controls.estado.hasError('pattern') ? 'Apenas letras' :
         '';
   }
-  /******************  Fim validação *************************/
-  
-  //Inicia contador
-  i=0;
-  //Método que salva dados do formulário
+  // Método que salva dados do formulário
   saveData() {
-    //inicializando array
-    //let arr = [''];
-    //recebe o formgroup    
+    // recebe o formgroup
     this.arr[this.i] = this.formDados.getRawValue();
-     console.log(this.i);
-     console.log(this.arr);
-     //console.log(arr[this.i]);
-     
-     //Itera o indice cada vez que o botao SALVA é acionado
+    console.log(this.i);
+    console.log(this.arr);
+     // console.log(arr[this.i]);
+
+     // Itera o indice cada vez que o botao SALVA é acionado
     this.i++;
 
-     this.tiles = [
-      { text: 'NOME', cols: 1, rows: 1, color: '#808080' },
-      { text: 'IDADE', cols: 1, rows: 1, color: '#808080' },
-      { text: 'CPF', cols: 1, rows: 1, color: '#808080' },
-      { text: 'TELEFONE', cols: 1, rows: 1, color: '#808080' },
-      { text: 'E-MAIL', cols: 1, rows: 1, color: '#808080' },
-      { text: 'RUA', cols: 1, rows: 1, color: '#808080' },
-      { text: 'CIDADE', cols: 1, rows: 1, color: '#808080' },
-      { text: 'UF', cols: 1, rows: 1, color: '#808080' },
-    ];
-  }
+  //   this.tiles = [
+  //     { text: 'NOME', cols: 1, rows: 1, color: '#808080' },
+  //     { text: 'IDADE', cols: 1, rows: 1, color: '#808080' },
+  //     { text: 'CPF', cols: 1, rows: 1, color: '#808080' },
+  //     { text: 'TELEFONE', cols: 1, rows: 1, color: '#808080' },
+  //     { text: 'E-MAIL', cols: 1, rows: 1, color: '#808080' },
+  //     { text: 'RUA', cols: 1, rows: 1, color: '#808080' },
+  //     { text: 'CIDADE', cols: 1, rows: 1, color: '#808080' },
+  //     { text: 'UF', cols: 1, rows: 1, color: '#808080' },
+  //   ];
+   }
 
-  //Limpa campos do formulário
+  // Limpa campos do formulário
   cleanData() {
     this.i = 0;
     this.formDados.patchValue
@@ -168,7 +159,4 @@ export class IsabellaComponent {
         estado: '',
       });
   }
-
-  // Criar Grid
-
 }

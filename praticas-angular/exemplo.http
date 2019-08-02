@@ -1,0 +1,27 @@
+
+// MÉTODOS
+//GET//
+http://localhost:3000/posts
+
+###
+//get específico
+GET http://localhost:3000/posts/1
+
+###
+// POST - adicionar//
+POST http://localhost:3000/posts HTTP/1.1
+content-type: application/json
+
+{
+    "title": "another one"
+  }
+
+
+###
+//PUT - editar posts/*especificarindice* //
+PUT http://localhost:3000/posts/1 HTTP/1.1
+content-type: application/json
+
+{
+    "title": "another one"
+  }

@@ -8,13 +8,16 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PauloComponent } from './paulo/paulo.component';
 import { IsabellaComponent } from './isabella/isabella.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormularioComponent } from './clientes/formulario/formulario.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatFormFieldModule, matFormFieldAnimations} from '@angular/material/form-field';
 import {MatButtonModule, MatSelectModule} from '@angular/material';
 import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon'; 
+import {MatIconModule} from '@angular/material/icon';
 import { FormBuilder } from '@angular/forms';
+import { MatTableModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
+import { UsertableComponent } from './usertable/usertable.component';
 
 
 
@@ -24,7 +27,7 @@ import { FormBuilder } from '@angular/forms';
     IsabellaComponent,
     PauloComponent,
     HelioComponent,
-    FormularioComponent,
+    UsertableComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,9 +41,11 @@ import { FormBuilder } from '@angular/forms';
     MatSelectModule,
     MatInputModule,
     MatIconModule,
-  
+    MatTableModule,
+    HttpClientModule,
+
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
