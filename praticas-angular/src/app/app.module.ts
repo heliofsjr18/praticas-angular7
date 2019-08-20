@@ -43,6 +43,7 @@ import { UsertableComponent } from './usertable/usertable.component';
     MatIconModule,
     MatTableModule,
     HttpClientModule,
+    BrowserModule,
 
   ],
   providers: [UserService],

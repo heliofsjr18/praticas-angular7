@@ -93,3 +93,22 @@
           </mat-grid-tile>
         </mat-grid-list>
       </p>-->
+
+
+
+        <mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="nome">
+            <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.nome}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="idade">
+            <mat-header-cell *matHeaderCellDef> Idade </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.idade}} </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+
+
+

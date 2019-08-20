@@ -1,7 +1,13 @@
+import { User } from './../models/user.model';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
+import {MatTableDataSource} from '@angular/material/table';
+// import 'rxjs/add/observable/of';
+
+
 
 
 @Component({
@@ -12,21 +18,13 @@ import { FormBuilder } from '@angular/forms';
 
 export class IsabellaComponent {
   constructor(private fb: FormBuilder) { }
-  public formDados: FormGroup;
-  arr = [];
-  tiles: { text: string; cols: number; rows: number; color: string; }[];
-  /******************  Fim validação *************************/
+  json: string;
+  arr = [{'nome':'meunome', 'idade': 12}];
+  displayedColumns = ['nome', 'idade'];
 
-  // Inicia contador
-  i = 0;
+   /******************  Fim validação *************************/
 
-  // tslint:disable-next-line: use-lifecycle-interface
-  ngOnInit() {
-    this.formDados = this.createPerson();
-  }
-
-  createPerson(): FormGroup {
-    return this.fb.group({
+    formDados = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
       idade: ['', Validators.required],
       cpf: ['', [Validators.required, Validators.minLength(11), Validators.pattern(/[0-9]/)]],
@@ -36,21 +34,10 @@ export class IsabellaComponent {
       cidade: ['', [Validators.required, Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
       estado: ['', [Validators.required, Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
     });
-  }
 
 
-  // Preenchimento automatico para verificar a validação
-  updateProfile() {
-    this.formDados.patchValue
-      ({
-        nome: 'Nome qualquer',
-        idade: '40',
-        email: 'nome@email.com',
-        cpf: '12345678901',
-        telefone: '123456789111',
-        rua: 'Rua tal numero tal',
-        cidade: 'cidade',
-        estado: 'esr', });
+  ngOnInit() {
+    // this.formDados = this.createPerson();
   }
 
   /*************  Validação de preenchimento dos campos *************************/
@@ -121,29 +108,20 @@ export class IsabellaComponent {
       this.formDados.controls.estado.hasError('pattern') ? 'Apenas letras' :
         '';
   }
-  // Método que salva dados do formulário
+
+  public dataSource = new MatTableDataSource(this.arr);
+  i = 1;
   saveData() {
-    // recebe o formgroup
-    this.arr[this.i] = this.formDados.getRawValue();
-    console.log(this.i);
-    console.log(this.arr);
-     // console.log(arr[this.i]);
-
-     // Itera o indice cada vez que o botao SALVA é acionado
+    // this.arr[this.i] = this.formDados.getRawValue();
+    this.arr.push(this.formDados.getRawValue());
+    this.dataSource.data = this.arr;
+    console.log(this.dataSource.data);
     this.i++;
-
-  //   this.tiles = [
-  //     { text: 'NOME', cols: 1, rows: 1, color: '#808080' },
-  //     { text: 'IDADE', cols: 1, rows: 1, color: '#808080' },
-  //     { text: 'CPF', cols: 1, rows: 1, color: '#808080' },
-  //     { text: 'TELEFONE', cols: 1, rows: 1, color: '#808080' },
-  //     { text: 'E-MAIL', cols: 1, rows: 1, color: '#808080' },
-  //     { text: 'RUA', cols: 1, rows: 1, color: '#808080' },
-  //     { text: 'CIDADE', cols: 1, rows: 1, color: '#808080' },
-  //     { text: 'UF', cols: 1, rows: 1, color: '#808080' },
-  //   ];
+    //const json = JSON.stringify(this.arr);
+    // console.log(this.arr);
    }
 
+  //  public myarr = get(this.arr);
   // Limpa campos do formulário
   cleanData() {
     this.i = 0;
@@ -159,4 +137,18 @@ export class IsabellaComponent {
         estado: '',
       });
   }
+    // Preenchimento automatico para verificar a validação
+    updateProfile() {
+      this.formDados.patchValue
+        ({
+          nome: 'Nome qualquer',
+          idade: '40',
+          email: 'nome@email.com',
+          cpf: '12345678901',
+          telefone: '123456789111',
+          rua: 'Rua tal numero tal',
+          cidade: 'cidade',
+          estado: 'esr',
+        });
+    }
 }

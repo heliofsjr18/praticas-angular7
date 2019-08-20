@@ -11,9 +11,10 @@ import { User } from '../models/user.model';
   styleUrls: ['./usertable.component.css']
 })
 export class UsertableComponent implements OnInit {
+
   // tslint:disable-next-line: no-use-before-declare
   dataSource = new UserDataSource(this.userService);
-  displayedColumns = ['name', 'email', 'phone', 'company'];
+  displayedColumns = ['name', 'email', 'telefone', 'idade', 'cpf', 'rua', 'cidade', 'estado' ];
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -29,3 +30,4 @@ export class UserDataSource extends DataSource<any> {
   }
   disconnect() {}
 }
+
