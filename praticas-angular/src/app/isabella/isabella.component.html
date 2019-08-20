@@ -11,7 +11,6 @@
               <mat-hint>Digite seu nome completo</mat-hint>
             </mat-form-field>
           </div>
-
           <!--IDADE-->
           <div>
             <mat-form-field>
@@ -20,7 +19,6 @@
               <!----mat-hint>Apenas números</mat-hint-->
             </mat-form-field>
           </div>
-
           <!--CPF-->
           <div>
             <mat-form-field>
@@ -29,7 +27,6 @@
               <mat-hint>Sem espaços e traços</mat-hint>
             </mat-form-field>
           </div>
-
           <!--TELEFONE-->
           <div class="example-tel-input-container">
             <mat-form-field>
@@ -40,7 +37,6 @@
               <mat-hint>Inclua a o codigo de area</mat-hint>
             </mat-form-field>
           </div>
-
           <!--EMAIL-->
           <div class="example-container">
             <mat-form-field>
@@ -94,10 +90,8 @@
         </mat-grid-list>
       </p>-->
 
-
-
         <mat-table [dataSource]="dataSource">
-          <ng-container matColumnDef="nome">
+          <ng-container matColumnDef="name">
             <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
             <mat-cell *matCellDef="let user"> {{user.nome}} </mat-cell>
           </ng-container>
@@ -105,9 +99,33 @@
             <mat-header-cell *matHeaderCellDef> Idade </mat-header-cell>
             <mat-cell *matCellDef="let user"> {{user.idade}} </mat-cell>
           </ng-container>
+          <ng-container matColumnDef="cpf">
+            <mat-header-cell *matHeaderCellDef> CPF </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.cpf}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="telefone">
+            <mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.telefone}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> E-Mail </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="rua">
+            <mat-header-cell *matHeaderCellDef> Rua </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.rua}} </mat-cell>
+          </ng-container>    <ng-container matColumnDef="cidade">
+            <mat-header-cell *matHeaderCellDef> Cidade </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.cidade}} </mat-cell>
+          </ng-container>    <ng-container matColumnDef="estado">
+            <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+            <mat-cell *matCellDef="let user"> {{user.estado}} </mat-cell>
+          </ng-container>
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
+
+
 
 
 

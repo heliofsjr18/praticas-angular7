@@ -1,14 +1,7 @@
-import { User } from './../models/user.model';
 import { Validators } from '@angular/forms';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
 import {MatTableDataSource} from '@angular/material/table';
-// import 'rxjs/add/observable/of';
-
-
-
 
 @Component({
   selector: 'app-isabella',
@@ -17,12 +10,11 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 
 export class IsabellaComponent {
-  constructor(private fb: FormBuilder) { }
   json: string;
   arr = [{'nome':'meunome', 'idade': 12}];
-  displayedColumns = ['nome', 'idade'];
+  displayedColumns = ['name', 'email', 'telefone', 'idade', 'cpf', 'rua', 'cidade', 'estado' ];
+  constructor(private fb: FormBuilder) { }
 
-   /******************  Fim validação *************************/
 
     formDados = this.fb.group({
       nome: ['', [Validators.required, Validators.minLength(4), Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
@@ -34,7 +26,6 @@ export class IsabellaComponent {
       cidade: ['', [Validators.required, Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
       estado: ['', [Validators.required, Validators.pattern(/[A-Za-z-áéíóúÁÉÍÓÚ]/)]],
     });
-
 
   ngOnInit() {
     // this.formDados = this.createPerson();
@@ -109,46 +100,41 @@ export class IsabellaComponent {
         '';
   }
 
+  /*********************** MÉTODOS DOS EVENTOS ***********************************************/
   public dataSource = new MatTableDataSource(this.arr);
-  i = 1;
   saveData() {
-    // this.arr[this.i] = this.formDados.getRawValue();
-    this.arr.push(this.formDados.getRawValue());
-    this.dataSource.data = this.arr;
-    console.log(this.dataSource.data);
-    this.i++;
-    //const json = JSON.stringify(this.arr);
-    // console.log(this.arr);
+     // this.arr[this.i] = this.formDados.getRawValue();
+     this.arr.push(this.formDados.getRawValue());
+     this.dataSource.data = this.arr;
+     console.log(this.dataSource.data);
+     //const json = JSON.stringify(this.arr);
+     // console.log(this.arr);
    }
 
-  //  public myarr = get(this.arr);
   // Limpa campos do formulário
   cleanData() {
-    this.i = 0;
-    this.formDados.patchValue
-      ({
-        nome: '',
-        idade: '',
-        email: ' ',
-        cpf: '',
-        telefone: '',
-        rua: '',
-        cidade: '',
-        estado: '',
+    this.formDados.patchValue ({
+      nome: '',
+      idade: '',
+      email: ' ',
+      cpf: '',
+      telefone: '',
+      rua: '',
+      cidade: '',
+      estado: '',
       });
   }
-    // Preenchimento automatico para verificar a validação
-    updateProfile() {
-      this.formDados.patchValue
-        ({
-          nome: 'Nome qualquer',
-          idade: '40',
-          email: 'nome@email.com',
-          cpf: '12345678901',
-          telefone: '123456789111',
-          rua: 'Rua tal numero tal',
-          cidade: 'cidade',
-          estado: 'esr',
+  // Preenchimento automatico para verificar a validação
+  updateProfile() {
+    this.formDados.patchValue ({
+        nome: 'Nome qualquer',
+        idade: '40',
+        email: 'nome@email.com',
+        cpf: '12345678901',
+        telefone: '123456789111',
+        rua: 'Rua tal numero tal',
+        cidade: 'cidade',
+        estado: 'esr',
         });
     }
 }
