@@ -21,7 +21,30 @@
   :host.example-floating .example-tel-input-spacer {
     opacity: 1;
   }
-  .container {
+  .main {
     display: flex; /* or inline-flex */
+    justify-content: space-evenly;
+    align-content: flex-start;
+    position: relative;
+  }
+  .child-table {
+    width: 60%;
+    background: rgb(236, 186, 140);
   }
 
+  .form-background{
+   background-color:rgb(236, 186, 140);
+}
+
+.form-margin{
+  margin-left:5%;
+}
+.mat-font-size{
+  font-size: 12px;
+}
+.title{
+  margin-left:5%;
+  font-size: 2rem;
+  text-align: left;
+  color: aliceblue;
+}
