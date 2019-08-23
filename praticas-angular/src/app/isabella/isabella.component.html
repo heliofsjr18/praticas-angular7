@@ -4,7 +4,7 @@
     <div class="main">
       <!------------------FORMULÁRIO-------------------------->
       <div>
-      <form [formGroup]="formDados">
+      <form method="post" [formGroup]="formDados">
         <!--NOME-->
         <div>
           <mat-form-field>
@@ -70,18 +70,18 @@
             <mat-error>{{getErrorMessageEstado()}}</mat-error>
           </mat-form-field>
         </div>
-      <!------------------------------------------------------->
-      <!------------------BOTOES---------------------------->
-      <div class="example-button-row">
-          <button mat-raised-button type="submit" [disabled]="!formDados.valid" (click)="saveData()">SALVAR</button>
-          <!--button mat-raised-button [disabled]="!formDados.valid" (click)="onSubmit()" type="submit">Submeter</button-->
-          <button mat-raised-button (click)="cleanData()">LIMPAR</button>
-          <!-- BOTAO QUE PREENCHE AUTOMATICAMENTE OS CAMPOS -->
-          <button mat-raised-button (click)="updateProfile()">PREENCHE</button>
-      </div>
+        <!--BOTOES-->
+        <div class="example-button-row">
+           <button mat-raised-button [disabled]="!formDados.valid" (click)="saveData()">SALVAR</button>
+           <button mat-raised-button [disabled]="!formDados.valid" (click)="sendData()">POST</button>
+           <button mat-raised-button (click)="cleanData()">LIMPAR CAMPOS</button>
+           <button mat-raised-button (click)="updateProfile()">PREENCHE</button>
+           <!-- BOTAO UPLOAD FILE -->
+           <!-- <input type=text (keyup)="onFileSelected($event)">
+           <button (click)="onUpload()"> novo botao</button> -->
+        </div>
       </form>
-      </div>
-      <!------------------------------------------------------->
+    </div>
 
       <mat-table [dataSource]="dataSource" class="child-table">
           <ng-container matColumnDef="name">
@@ -119,6 +119,3 @@
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-    <!-- </div>
-  </div>
-</div> -->

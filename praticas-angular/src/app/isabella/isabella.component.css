@@ -28,8 +28,9 @@
     position: relative;
   }
   .child-table {
-    width: 60%;
+    width: 70%;
     background: rgb(236, 186, 140);
+
   }
 
   .form-background{
@@ -43,8 +44,17 @@
   font-size: 12px;
 }
 .title{
-  margin-left:5%;
+  margin-left:2.5%;
   font-size: 2rem;
   text-align: left;
   color: aliceblue;
+}
+
+/* SOBRESCREVE CSS ANGULAR MATERIAL  */
+:host /deep/ .mat-header-cell{
+  font-size: 18px;
+  font-weight: bold;
+}
+:host /deep/ .mat-cell{
+  font-size: 11px;
 }

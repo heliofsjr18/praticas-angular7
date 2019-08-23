@@ -1,7 +1,9 @@
-import { Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Validators, FormGroup } from '@angular/forms';
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import {MatTableDataSource} from '@angular/material/table';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-isabella',
@@ -13,7 +15,7 @@ export class IsabellaComponent {
   json: string;
   arr = [{'nome':'meunome', 'idade': 12}];
   displayedColumns = ['name', 'email', 'telefone', 'idade', 'cpf', 'rua', 'cidade', 'estado' ];
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private userService: UserService) { }
 
 
     formDados = this.fb.group({
@@ -103,10 +105,11 @@ export class IsabellaComponent {
   /*********************** MÉTODOS DOS EVENTOS ***********************************************/
   public dataSource = new MatTableDataSource(this.arr);
   saveData() {
+    this.arr.push(this.formDados.getRawValue());
+    this.dataSource.data = this.arr;
+    console.log(this.dataSource.data);
+
      // this.arr[this.i] = this.formDados.getRawValue();
-     this.arr.push(this.formDados.getRawValue());
-     this.dataSource.data = this.arr;
-     console.log(this.dataSource.data);
      //const json = JSON.stringify(this.arr);
      // console.log(this.arr);
    }
@@ -136,5 +139,33 @@ export class IsabellaComponent {
         cidade: 'cidade',
         estado: 'esr',
         });
+    }
+
+    selectedFile: File = null;
+
+    // onFileSelected(event){
+    //  console.log(event);
+    //   this.selectedFile = <File>event.target.files[0];
+    // }
+
+    // onUpload() {
+    //   const fd = new FormData();
+    //   fd.append('text', this.selectedFile, this.selectedFile.name);
+    //   this.http.post('http://localhost:3000/pessoa',fd)
+    //   .subscribe(res => {
+    //     console.log(res);
+    //   });
+    // }
+    // }
+    contato = [];
+    sendData(frm: FormGroup){
+      this.contato = this.formDados.getRawValue();
+      this.userService.postUser(this.contato)
+      .subscribe(resposta => {
+        this.contato.push(resposta);
+
+      frm.reset();
+    });
+
     }
 }

@@ -1,3 +1,4 @@
+import { IsabellaComponent } from './../isabella/isabella.component';
 import { Component } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -27,5 +28,8 @@ export class UserService {
   //   // cabe.append('Content-Type', 'application/x-www-form-urlencoded');
   //   return this.http.post('http://validate.jsontest.com',json);
   //   }
+  postUser(contato:any){
+    return this.http.post(this.serviceUrl, contato);
+  }
 }
 
