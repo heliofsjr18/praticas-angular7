@@ -11,25 +11,15 @@ import { User } from '../models/user.model';
 })
 export class UserService {
 
-  private serviceUrl = 'http://localhost:3000/pessoa';
+   private serviceUrl = 'http://localhost:3000/pessoa';
 
-  constructor(private http: HttpClient) { }
+   constructor(private http: HttpClient) { }
 
-  getUser(): Observable<User[]> {
+   getUser(): Observable<User[]> {
     return this.http.get<User[]>(this.serviceUrl);
-  }
-  // postUser(): Observable<User[]>{
-  //   return this.http.post<User[]>(this.serviceUrl,{nome:'teste', idade:10});
-  // }
-  // postJSON() {
-  //   var json = JSON.stringify({var1: 'teste', var2: 1000});
-  //   // var params = 'json=' + json;
-  //   // var cabe = new Headers();
-  //   // cabe.append('Content-Type', 'application/x-www-form-urlencoded');
-  //   return this.http.post('http://validate.jsontest.com',json);
-  //   }
-  postUser(contato:any){
+   }
+   postUser(contato: any) {
     return this.http.post(this.serviceUrl, contato);
-  }
+   }
 }
 

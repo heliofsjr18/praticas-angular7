@@ -3,23 +3,22 @@ import { NgModule } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HelioComponent } from './helio/helio.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { PauloComponent } from './paulo/paulo.component';
-import { IsabellaComponent } from './isabella/isabella.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatFormFieldModule, matFormFieldAnimations} from '@angular/material/form-field';
-import {MatButtonModule, MatSelectModule} from '@angular/material';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material/icon';
-import { FormBuilder } from '@angular/forms';
-import { MatTableModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/user.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormBuilder } from '@angular/forms';
+
+import {MatFormFieldModule, matFormFieldAnimations} from '@angular/material/form-field';
+import {MatButtonModule, MatSelectModule, MatTableModule} from '@angular/material';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+import { HelioComponent } from './helio/helio.component';
+import { PauloComponent } from './paulo/paulo.component';
+import { IsabellaComponent } from './isabella/isabella.component';
 import { UsertableComponent } from './usertable/usertable.component';
-
-
 
 @NgModule({
   declarations: [
@@ -44,7 +43,7 @@ import { UsertableComponent } from './usertable/usertable.component';
     MatTableModule,
     HttpClientModule,
     BrowserModule,
-
+  
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

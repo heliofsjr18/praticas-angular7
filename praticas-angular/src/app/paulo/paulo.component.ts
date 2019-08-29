@@ -37,7 +37,7 @@ import { Input, Component } from '@angular/core';
   templateUrl: './paulo.component.html',
   styleUrls: ['./paulo.component.css']
 })
-export class PauloComponent{
+export class PauloComponent {
   // alerts: Alert[];
 
   // constructor() {
